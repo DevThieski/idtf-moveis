@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Chicle&family=Honk&display=swap');
+
+
 /* Global Styles */
 :root {
     --primary-color: #8B5A2B; /* Madeira escura */
@@ -51,6 +54,12 @@ img {
     display: block;
 }
 
+.botao-centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .btn {
     display: inline-block;
     background-color: var(--accent-color);
@@ -61,6 +70,7 @@ img {
     transition: var(--transition);
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 
 .btn:hover {
@@ -784,31 +794,37 @@ img {
 
 
 
-/* Estilo do botão do WhatsApp */
-.whatsapp-button {
+/* ICONE WHATSAPP */
+/* Estilo do ícone do WhatsApp */
+/* Estilo do ícone do WhatsApp */
+.whatsapp-float {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25D366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da direita */
+    background-color: #25D366; /* Cor de fundo do WhatsApp */
+    color: white; /* Cor do ícone */
+    border-radius: 50%; /* Deixa o ícone redondo */
+    width: 60px; /* Largura */
+    height: 60px; /* Altura */
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    animation: pulse 2s infinite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: all 0.3s ease; /* Transição suave */
+    animation: float 3s ease-in-out infinite; /* Animação de flutuação */
 }
 
-.whatsapp-button:hover {
-    background-color: #128C7E;
-    transform: scale(1.1);
+.whatsapp-float:hover {
+    background-color: #128C7E; /* Cor ao passar o mouse */
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra mais intensa */
+}
+
+.whatsapp-float svg {
+    width: 32px; /* Tamanho do ícone */
+    height: 32px;
+    fill: white; /* Cor do ícone */
 }
 
 /* Animação de pulsar */
@@ -824,22 +840,25 @@ img {
     }
 }
 
-/* Tooltip (opcional) */
-.whatsapp-button::after {
-    content: "Fale conosco";
-    position: absolute;
-    right: 70px;
-    white-space: nowrap;
-    background-color: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
+/* Animação de flutuação */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.whatsapp-button:hover::after {
-    opacity: 1;
+/* Adiciona a animação de pulsar */
+.whatsapp-float::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    z-index: -1;
 }
+
+

@@ -187,18 +187,17 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
             <section class="contact-section" id="contact">
                 <h2 class="section-title">Entre em Contato</h2>
                 <div class="contact-container">
                     <div class="contact-info">
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>Rua Ervino Ernesto Brunquell - S/N<br>Rio Negro/PR</p>
+                            <p>Rua Ervino Ernesto Brunquell S/N <br> Bairro Lageado dos Vieiras - Rio Negro/PR</p>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone-alt"></i>
-                            <p>(47) 99145-5837<br>(11) 11111-2222</p>
+                            <p>(47) 991455837<br>(47) 99269-6453</p>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
@@ -206,26 +205,26 @@
                         </div>
                         <div class="info-item">
                             <i class="fas fa-clock"></i>
-                            <p>Segunda a Sexta: 8h às 14h</p>
+                            <p>Segunda a Sexta: 8h às 14h<br>Sábado: 8h às 11h</p>
                         </div>
                     </div>
-                    <form class="contact-form">
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xyzenvze" method="POST">
                         <div class="form-group">
-                            <input type="text" placeholder="Seu Nome" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Seu E-mail" required>
+                            <input type="text" name="nome" placeholder="Seu Nome" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Seu Telefone">
+                            <input type="email" name="email" placeholder="Seu E-mail" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Sua Mensagem" required></textarea>
+                            <input type="tel" name="telefone" placeholder="Seu Telefone">
                         </div>
-                        <div class="botao-centro">
-                            <button type="submit" class="btn">Enviar Mensagem</button>
+                        <div class="form-group">
+                            <textarea name="mensagem" placeholder="Sua Mensagem" required></textarea>
                         </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
                     </form>
+                    <div id="formMessage"></div>
+                    <div id="form-message" style="margin-top: 20px; text-align: center;"></div>
                 </div>
             </section>
 
@@ -277,5 +276,34 @@
             }, 100);
         });
     </script>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formMessage = document.getElementById('formMessage');
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                formMessage.innerHTML = '<p style="color: green;">Mensagem enviada com sucesso!</p>';
+                form.reset();
+            } else {
+                formMessage.innerHTML = '<p style="color: red;">Erro ao enviar. Tente novamente.</p>';
+            }
+        } catch (error) {
+            formMessage.innerHTML = '<p style="color: red;">Erro de conexão.</p>';
+        }
+    });
+    </script>
+
+
 </body>
 </html>

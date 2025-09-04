@@ -1,0 +1,4 @@
+User-agent: Todos
+Allow: /wp-admin
+
+Sitemap: https://idtfmoveis.com.br/sitemap.xml
